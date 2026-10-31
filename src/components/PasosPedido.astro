@@ -1,0 +1,230 @@
+---
+import { site } from "../data/config";
+import Icon from "./Icon.astro";
+
+const pasos = [
+  "Mirá el catálogo y armá tu lista.",
+  "Escribinos por WhatsApp con tu lista y tu zona.",
+  "Confirmamos stock, total y entrega.",
+];
+
+const iconos = ["book", "message", "check"];
+---
+
+<section class="steps" id="pedido" aria-labelledby="steps-title">
+  <div class="wrap">
+    <header class="section-banner">
+      <div class="section-banner__main">
+        <span class="section-banner__icon">
+          <Icon name="list" size={20} />
+        </span>
+        <div class="section-banner__copy">
+          <span class="section-banner__index">04</span>
+          <h2 id="steps-title">Cómo hacer tu pedido</h2>
+        </div>
+      </div>
+      <span class="section-banner__pill">3 pasos</span>
+    </header>
+
+    <header class="steps-head">
+      <h3 class="section-title">Tu pedido, <span>en tres pasos.</span></h3>
+    </header>
+
+    <div class="steps-layout">
+      <ol class="steps-list">
+        {
+          pasos.map((paso, index) => (
+            <li>
+              <div class="step-top">
+                <span class="step-number">{String(index + 1).padStart(2, "0")}</span>
+                <span class="step-icon">
+                  <Icon name={iconos[index]} size={19} />
+                </span>
+              </div>
+              <span class="step-label">Paso {index + 1} de {pasos.length}</span>
+              <h4>{paso}</h4>
+            </li>
+          ))
+        }
+      </ol>
+
+      <aside class="steps-actions" aria-label="Acciones para hacer un pedido">
+        <div class="actions-copy">
+          <p class="actions-label">Empezá por acá</p>
+        </div>
+        <div class="actions-buttons">
+          <a
+            class="btn btn--solid"
+            href={site.catalogo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver catálogo y precios, se abre en una pestaña nueva"
+          >
+            Ver catálogo y precios
+            <Icon name="arrow" size={18} />
+          </a>
+          <a
+            class="btn btn--outline"
+            href={site.whatsapp.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Consultar por WhatsApp, se abre en una pestaña nueva"
+          >
+            Consultar por WhatsApp
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps {
+    padding-block: clamp(52px, 7vw, 82px);
+    background: var(--seccion-alterna);
+  }
+
+  .steps-head {
+    padding-block: clamp(28px, 4vw, 42px) clamp(22px, 3.5vw, 30px);
+  }
+
+  .section-title {
+    max-width: 16ch;
+  }
+
+  .steps-layout {
+    display: grid;
+    gap: 22px;
+  }
+
+  .steps-list {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .steps-list li {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 19px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+    box-shadow: 0 5px 16px rgba(6, 48, 30, 0.035);
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .step-number {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: var(--verde);
+    color: var(--menta-clara);
+    font-family: var(--fuente-mono);
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .step-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--menta-suave);
+    color: var(--menta-texto);
+  }
+
+  .step-label {
+    margin-bottom: 5px;
+    color: var(--texto-suave);
+    font-family: var(--fuente-mono);
+    font-size: 0.62rem;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .steps-list h4 {
+    max-width: 24ch;
+    color: var(--texto);
+    font-size: clamp(1rem, 1.6vw, 1.14rem);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+  }
+
+  .steps-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: clamp(20px, 3vw, 28px);
+    border: 1px solid var(--menta-borde);
+    border-radius: var(--radio-lg);
+    background: linear-gradient(135deg, var(--menta-suave) 0%, var(--superficie) 100%);
+  }
+
+  .actions-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .actions-label {
+    color: var(--texto);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .actions-note {
+    color: var(--texto-suave);
+    font-size: 0.74rem;
+    line-height: 1.5;
+  }
+
+  .actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .actions-buttons .btn {
+    flex: 1 1 180px;
+  }
+
+  @media (min-width: 760px) {
+    .steps-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .steps-actions {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .actions-buttons {
+      flex: 0 1 auto;
+      flex-wrap: nowrap;
+    }
+
+    .actions-buttons .btn {
+      flex: 0 0 auto;
+    }
+  }
+</style>

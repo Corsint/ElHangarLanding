@@ -1,0 +1,270 @@
+---
+import { site } from "../data/config";
+import Icon from "./Icon.astro";
+---
+
+<section class="how" id="como-comprar" aria-labelledby="how-title">
+  <div class="wrap">
+    <header class="section-banner">
+      <div class="section-banner__main">
+        <span class="section-banner__icon">
+          <Icon name="clipboard" size={20} />
+        </span>
+        <div class="section-banner__copy">
+          <span class="section-banner__index">03</span>
+          <h2 id="how-title">Cómo comprar</h2>
+        </div>
+      </div>
+      <span class="section-banner__pill">4 requisitos</span>
+    </header>
+
+    <div class="how-grid">
+      <div class="how-intro">
+        <h3 class="section-title">Antes de armar <span>el pedido.</span></h3>
+        <p class="how-lead">
+          Trabajamos con venta minorista y mayorista. Estos son los datos que necesitás tener a mano
+          para comprar en El Hangar.
+        </p>
+
+        <div class="sale-formats">
+          <p class="format-heading">Formatos de venta</p>
+          <ul>
+            <li><span>01</span>Kilo suelto</li>
+            <li><span>02</span>Bolsa de 5 kg</li>
+            <li><span>03</span>Bulto o caja de 10 kg</li>
+            <li><span>04</span>Blister en algunos productos</li>
+          </ul>
+          <p class="format-note">
+            Cada producto tiene su propia escala de cantidades y precios.
+          </p>
+        </div>
+      </div>
+
+      <dl class="requirements">
+        <div class="requirement">
+          <dt>
+            <span class="requirement-icon"><Icon name="bag" size={19} /></span>
+            <span>Compra mínima</span>
+          </dt>
+          <dd>
+            <!-- EDITAR: texto genérico, reemplazar con el mínimo de compra real. -->
+            <p>
+              Para entregas en Mar del Plata, la compra mínima es de $50.000. Para pedidos en el
+              resto de la zona, el mínimo se coordina según la localidad y el volumen.
+            </p>
+          </dd>
+        </div>
+
+        <div class="requirement">
+          <dt>
+            <span class="requirement-icon"><Icon name="box" size={19} /></span>
+            <span>Compra máxima o cupos</span>
+          </dt>
+          <dd>
+            <!-- EDITAR: texto genérico, reemplazar con los máximos o cupos reales por producto. -->
+            <p>
+              Algunos productos tienen cupos según disponibilidad. Si necesitás una cantidad grande,
+              avisanos antes y te confirmamos stock y plazo de entrega.
+            </p>
+          </dd>
+        </div>
+
+        <div class="requirement">
+          <dt>
+            <span class="requirement-icon"><Icon name="truck" size={19} /></span>
+            <span>Entrega, envío y retiro</span>
+          </dt>
+          <dd>
+            <!-- EDITAR: texto genérico, reemplazar con la zona de entrega, el costo de envío y las condiciones de retiro reales. -->
+            <p>
+              Entregamos en Mar del Plata y localidades cercanas. El costo se calcula según la zona y
+              el volumen del pedido. También podés retirar coordinando día y horario.
+            </p>
+          </dd>
+        </div>
+
+        <div class="requirement">
+          <dt>
+            <span class="requirement-icon"><Icon name="wallet" size={19} /></span>
+            <span>Medios de pago</span>
+          </dt>
+          <dd>
+            <!-- EDITAR: texto genérico, reemplazar con los medios de pago reales. -->
+            <p>
+              Aceptamos transferencia bancaria, efectivo y billeteras virtuales. Para compras
+              mayoristas, consultá por condiciones y plazos.
+            </p>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding-block: clamp(52px, 7vw, 82px);
+    background: var(--seccion-base);
+  }
+
+  .how-grid {
+    display: grid;
+    gap: clamp(32px, 5vw, 56px);
+    padding-top: clamp(28px, 4vw, 44px);
+  }
+
+  .how-intro {
+    min-width: 0;
+  }
+
+  .section-title {
+    max-width: 13ch;
+  }
+
+  .how-lead {
+    max-width: 45ch;
+    margin-top: 18px;
+    color: var(--texto-suave);
+    font-size: clamp(0.98rem, 1.4vw, 1.06rem);
+    line-height: 1.65;
+  }
+
+  .sale-formats {
+    padding: 20px;
+    margin-top: 26px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+    box-shadow: var(--sombra-tarjeta);
+  }
+
+  .format-heading {
+    margin-bottom: 6px;
+    color: var(--texto-suave);
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .sale-formats ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .sale-formats li {
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding-block: 10px;
+    border-bottom: 1px solid var(--borde-suave);
+    font-size: 0.94rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .sale-formats li span {
+    display: inline-flex;
+    width: 26px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--menta-suave);
+    color: var(--menta-texto);
+    font-family: var(--fuente-mono);
+    font-size: 0.58rem;
+    font-weight: 600;
+  }
+
+  .format-note {
+    max-width: 36ch;
+    margin-top: 14px;
+    color: var(--texto-suave);
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .price-date {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    margin-top: 18px;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    background: var(--menta-suave);
+    color: var(--menta-texto);
+    font-family: var(--fuente-mono);
+    font-size: 0.62rem;
+    line-height: 1.4;
+  }
+
+  .price-date strong {
+    font-weight: 600;
+  }
+
+  .requirements {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .requirement {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+    box-shadow: 0 5px 16px rgba(6, 48, 30, 0.035);
+  }
+
+  .requirement dt {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--texto);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+
+  .requirement-icon {
+    display: inline-grid;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--menta-suave);
+    color: var(--menta-texto);
+  }
+
+  .requirement dd {
+    margin: 0;
+  }
+
+  .requirement dd p {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  @media (min-width: 840px) {
+    .how-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .requirements {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

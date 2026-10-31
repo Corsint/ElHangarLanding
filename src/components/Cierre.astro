@@ -1,0 +1,403 @@
+---
+import { site } from "../data/config";
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+---
+
+<section class="closing" id="contacto" aria-labelledby="closing-title">
+  <div class="wrap">
+    <header class="section-banner">
+      <div class="section-banner__main">
+        <span class="section-banner__icon">
+          <Icon name="message" size={20} />
+        </span>
+        <div class="section-banner__copy">
+          <span class="section-banner__index">05</span>
+          <h2 id="closing-title">Contacto</h2>
+        </div>
+      </div>
+      <span class="section-banner__pill">Por WhatsApp</span>
+    </header>
+
+    <div class="closing-panel">
+      <header class="closing-head">
+        <h3>Armemos <span>tu pedido.</span></h3>
+        <p class="closing-lead">
+          Consultanos por stock, precios o entregas. Te respondemos por WhatsApp.
+        </p>
+      </header>
+
+      <div class="closing-grid">
+        <div class="closing-actions">
+          <p class="actions-label">Pedidos y consultas</p>
+          <a
+            class="btn btn--solid"
+            href={site.catalogo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver catálogo y precios, se abre en una pestaña nueva"
+          >
+            Ver catálogo y precios
+            <Icon name="arrow" size={18} />
+          </a>
+          <a
+            class="btn btn--outline"
+            href={site.whatsapp.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Consultar por WhatsApp, se abre en una pestaña nueva"
+          >
+            <Icon name="whatsapp" size={18} />
+            Consultar por WhatsApp
+          </a>
+        </div>
+
+        <dl class="contact-data">
+          <div>
+            <dt>WhatsApp</dt>
+            <dd>
+              <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer">
+                {site.whatsapp.numeroVisible}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt>Zona</dt>
+            <dd>{site.contacto.zona}</dd>
+          </div>
+          <div>
+            <dt>Horarios</dt>
+            <dd>{site.contacto.horarios}</dd>
+          </div>
+          <div>
+            <dt>Redes</dt>
+            <dd class="social-list">
+              {
+                site.contacto.instagram.url ? (
+                  <a
+                    href={site.contacto.instagram.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Instagram{" "}
+                    {site.contacto.instagram.usuario && (
+                      <span>{site.contacto.instagram.usuario}</span>
+                    )}
+                  </a>
+                ) : (
+                  <span class="social-pending">
+                    Instagram <small>perfil a confirmar</small>
+                  </span>
+                )
+              }
+              {
+                site.contacto.facebook.url ? (
+                  <a
+                    href={site.contacto.facebook.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Facebook{" "}
+                    {site.contacto.facebook.nombre && (
+                      <span>{site.contacto.facebook.nombre}</span>
+                    )}
+                  </a>
+                ) : (
+                  <span class="social-pending">
+                    Facebook <small>perfil a confirmar</small>
+                  </span>
+                )
+              }
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <footer class="closing-footer">
+      <div class="footer-brand">
+        <span class="footer-logo">
+          <img
+            src="/logo-el-hangar.png"
+            alt="El Hangar - Distribuimos Calidad"
+            width="1121"
+            height="610"
+          />
+        </span>
+        <div class="footer-brand-copy">
+          <strong>{site.marca}</strong>
+          <span>{site.lema}</span>
+        </div>
+      </div>
+      <p class="footer-copy">© {year} {site.marca} · {site.contacto.zona}</p>
+    </footer>
+  </div>
+</section>
+
+<style>
+  .closing {
+    padding-block: clamp(52px, 7vw, 82px) 0;
+    background: var(--seccion-base);
+  }
+
+  .closing-panel {
+    overflow: hidden;
+    padding: clamp(24px, 4vw, 38px);
+    margin-top: clamp(28px, 4vw, 42px);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-xl);
+    background: var(--seccion-base);
+    box-shadow: var(--sombra-tarjeta);
+    color: var(--texto);
+  }
+
+  .closing-head {
+    display: grid;
+    gap: 16px;
+    padding-bottom: clamp(24px, 3.5vw, 34px);
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .closing-head h3 {
+    max-width: 15ch;
+    color: var(--texto);
+    font-size: clamp(2rem, 4.4vw, 3.15rem);
+    line-height: 1.06;
+  }
+
+  .closing-head h3 span {
+    color: var(--menta-texto);
+  }
+
+  .closing-lead {
+    max-width: 46ch;
+    color: var(--texto-suave);
+    font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+    line-height: 1.6;
+  }
+
+  .closing-grid {
+    display: grid;
+    gap: 26px;
+    padding-top: clamp(24px, 3.5vw, 34px);
+  }
+
+  .closing-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+
+  .actions-label {
+    margin-bottom: 2px;
+    color: var(--menta-texto);
+    font-family: var(--fuente-mono);
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+  }
+
+  .closing-actions .btn {
+    width: 100%;
+  }
+
+  /* Tarjetas de datos: mismo estilo que las tarjetas de "Cómo comprar" */
+  .contact-data {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .contact-data > div {
+    display: grid;
+    min-width: 0;
+    gap: 8px;
+    padding: 18px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+    box-shadow: 0 5px 16px rgba(6, 48, 30, 0.035);
+  }
+
+  .contact-data dt {
+    color: var(--menta-texto);
+    font-family: var(--fuente-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .contact-data dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--texto);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .contact-data a {
+    font-weight: 600;
+    text-decoration-color: var(--borde);
+    text-underline-offset: 3px;
+  }
+
+  .contact-data a:hover {
+    color: var(--menta-texto);
+  }
+
+  .social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .social-list a,
+  .social-pending {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 7px;
+  }
+
+  .social-list a span,
+  .social-pending small {
+    color: var(--texto-suave);
+    font-size: 0.66rem;
+    font-weight: 500;
+  }
+
+  .social-pending {
+    color: var(--texto);
+  }
+
+  .social-pending small {
+    color: var(--menta-texto);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .closing-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+    padding-block: 24px 28px;
+    margin-top: 28px;
+    border-top: 1px solid var(--borde);
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-logo {
+    display: grid;
+    width: 136px;
+    height: 72px;
+    flex: 0 0 136px;
+    place-items: center;
+    padding: 9px 12px;
+    border-radius: 14px;
+    background: var(--verde);
+  }
+
+  .footer-logo img {
+    width: 100%;
+    height: auto;
+  }
+
+  .footer-brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .footer-brand-copy strong {
+    color: var(--texto);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .footer-brand-copy span,
+  .footer-copy {
+    color: var(--texto-suave);
+    font-size: 0.65rem;
+    line-height: 1.45;
+  }
+
+  .footer-brand-copy span {
+    font-family: var(--fuente-mono);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .footer-copy {
+    font-family: var(--fuente-mono);
+  }
+
+  @media (min-width: 760px) {
+    .closing-head {
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.75fr);
+      align-items: end;
+      gap: clamp(28px, 7vw, 84px);
+    }
+
+    .closing-lead {
+      justify-self: end;
+      padding-bottom: 3px;
+    }
+
+    .closing-grid {
+      grid-template-columns: minmax(250px, 0.85fr) minmax(0, 1.15fr);
+      align-items: start;
+    }
+
+    .closing-actions {
+      position: sticky;
+      top: 24px;
+    }
+
+    .contact-data {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 900px) {
+    .footer-logo {
+      width: 150px;
+      height: 78px;
+      flex-basis: 150px;
+    }
+
+    .footer-brand-copy strong {
+      font-size: 0.9rem;
+    }
+
+    .footer-brand-copy span,
+    .footer-copy {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .closing-footer {
+      align-items: flex-start;
+      flex-direction: column;
+      padding-bottom: 92px;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 1300px) {
+    .closing-footer {
+      padding-right: 82px;
+    }
+  }
+</style>

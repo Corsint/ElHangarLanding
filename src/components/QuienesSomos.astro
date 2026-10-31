@@ -1,0 +1,115 @@
+---
+import { site } from "../data/config";
+import Icon from "./Icon.astro";
+---
+
+<section class="about" id="quienes-somos" aria-labelledby="about-title">
+  <div class="wrap">
+    <header class="section-banner">
+      <div class="section-banner__main">
+        <span class="section-banner__icon">
+          <Icon name="users" size={20} />
+        </span>
+        <div class="section-banner__copy">
+          <span class="section-banner__index">01</span>
+          <h2 id="about-title">Quiénes somos</h2>
+        </div>
+      </div>
+      <span class="section-banner__pill">{site.marca}</span>
+    </header>
+
+    <div class="about-grid">
+      <div class="about-intro">
+        <h3 class="section-title">
+          Una distribuidora de barrio con <span>mentalidad de depósito.</span>
+        </h3>
+      </div>
+
+      <div class="about-copy">
+        <!-- EDITAR: texto genérico, reemplazar con la historia real de la marca. -->
+        <p>
+          El Hangar nació como un pequeño depósito de barrio, con una idea simple: que conseguir
+          frutos secos, especias y granos de buena calidad no sea un tema. Con los años fuimos
+          sumando surtido y clientes, pero mantuvimos la misma forma de trabajar: conocer cada
+          producto y decir las cosas como son.
+        </p>
+
+        <!-- EDITAR: texto genérico, reemplazar con el origen real de los productos y proveedores. -->
+        <p>
+          Elegimos proveedores que conocemos y revisamos la mercadería antes de que entre al
+          depósito. Miramos el origen, el aspecto y el sabor de cada partida. Así podemos vender lo
+          mismo por kilo a una casa que por bulto a un comercio, con la tranquilidad de que el
+          producto es el que decimos que es.
+        </p>
+
+        <!-- EDITAR: texto genérico, reemplazar con el diferencial real de El Hangar. -->
+        <p>
+          No vendemos a ciegas ni con vueltas: te mostramos la escala de precios, te confirmamos stock
+          y te decimos qué conviene según la cantidad. Si algo no está, lo decimos. Esa forma de
+          atender es la que nos trajo hasta acá.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: clamp(52px, 7vw, 82px);
+    background: var(--seccion-base);
+  }
+
+  .about-grid {
+    display: grid;
+    gap: clamp(28px, 5vw, 64px);
+    padding-top: clamp(28px, 4vw, 44px);
+  }
+
+  .about-intro {
+    min-width: 0;
+  }
+
+  .section-title {
+    max-width: 15ch;
+  }
+
+  .about-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 20px;
+    padding: clamp(22px, 3.5vw, 36px);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+    box-shadow: var(--sombra-tarjeta);
+  }
+
+  .about-copy p {
+    color: var(--texto-suave);
+    font-size: clamp(0.98rem, 1.4vw, 1.06rem);
+    line-height: 1.7;
+  }
+
+  .about-copy p:first-child {
+    color: var(--texto);
+    font-size: clamp(1.03rem, 1.5vw, 1.12rem);
+  }
+
+  .about-copy p + p {
+    padding-top: 20px;
+    border-top: 1px solid var(--borde-suave);
+  }
+
+  @media (min-width: 860px) {
+    .about-grid {
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      align-items: start;
+    }
+
+    .about-intro {
+      position: sticky;
+      top: 32px;
+    }
+  }
+</style>

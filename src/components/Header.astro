@@ -1,0 +1,189 @@
+---
+import { site } from "../data/config";
+import Icon from "./Icon.astro";
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <!-- EDITAR: reemplazar public/logo.svg por el archivo real del logo de El Hangar. -->
+    <div class="header-meta">
+      <span class="header-badge">
+        <Icon name="book" size={15} />
+        Catálogo oficial
+      </span>
+      <span class="header-zone">
+        <Icon name="pin" size={15} />
+        {site.contacto.zona}
+      </span>
+    </div>
+
+    <nav class="header-actions" aria-label="Acciones principales">
+      <a
+        class="header-action header-action--wa"
+        href={site.whatsapp.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Consultar por WhatsApp, se abre en una pestaña nueva"
+      >
+        <Icon name="whatsapp" size={17} />
+        <span>WhatsApp</span>
+      </a>
+      <a
+        class="header-action header-action--catalog"
+        href={site.catalogo.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver catálogo y precios, se abre en una pestaña nueva"
+      >
+        <span>Ver catálogo</span>
+        <Icon name="arrow" size={16} />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 20;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    background: var(--verde);
+    color: var(--blanco);
+  }
+
+  .header-inner {
+    display: flex;
+    min-height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 12px;
+  }
+
+  .header-meta,
+  .header-actions {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-badge,
+  .header-zone,
+  .header-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 0.69rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .header-badge {
+    gap: 6px;
+    padding: 0.43rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.94);
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  .header-badge :global(svg) {
+    color: var(--menta-clara);
+  }
+
+  .header-zone {
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+
+  .header-zone :global(svg) {
+    flex: 0 0 auto;
+    color: var(--menta-clara);
+  }
+
+  .header-actions {
+    justify-content: flex-end;
+    gap: 7px;
+  }
+
+  .header-action {
+    min-height: 38px;
+    gap: 7px;
+    padding: 0.48rem 0.75rem;
+    text-decoration: none;
+    transition:
+      background-color 140ms ease,
+      border-color 140ms ease,
+      color 140ms ease;
+  }
+
+  .header-action--wa {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--blanco);
+  }
+
+  .header-action--wa :global(svg) {
+    color: var(--menta-clara);
+  }
+
+  .header-action--wa:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .header-action--catalog {
+    border: 1px solid var(--blanco);
+    background: var(--blanco);
+    color: var(--verde);
+  }
+
+  .header-action--catalog:hover {
+    border-color: var(--menta-clara);
+    background: var(--menta-clara);
+  }
+
+  @media (max-width: 760px) {
+    .header-zone {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .header-inner {
+      min-height: 58px;
+      padding-block: 9px;
+    }
+
+    .header-action {
+      width: 40px;
+      padding-inline: 0;
+    }
+
+    .header-action span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      border: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .header-badge {
+      padding-inline: 0.58rem;
+      font-size: 0.61rem;
+      letter-spacing: 0.02em;
+    }
+  }
+</style>

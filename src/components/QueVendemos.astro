@@ -1,0 +1,297 @@
+---
+import { site } from "../data/config";
+import Icon from "./Icon.astro";
+
+const categorias = [
+  { nombre: "Especias, condimentos, hierbas y deshidratados", productos: 85, icono: "leaf" },
+  { nombre: "Línea de integrales, saborizantes y caldos", productos: 4, icono: "wheat" },
+  { nombre: "Mix de frutas", productos: 14, icono: "apple" },
+  { nombre: "Granolas", productos: 4, icono: "bowl" },
+  { nombre: "Frutos secos", productos: 29, icono: "nut" },
+  { nombre: "Legumbres", productos: 13, icono: "bean" },
+  { nombre: "Harinas", productos: 23, icono: "sack" },
+  { nombre: "Repostería", productos: 23, icono: "cupcake" },
+  { nombre: "Aceitunas", productos: 15, icono: "olive" },
+];
+---
+
+<section class="categories" id="que-vendemos" aria-labelledby="categories-title">
+  <div class="wrap">
+    <header class="section-banner">
+      <div class="section-banner__main">
+        <span class="section-banner__icon">
+          <Icon name="grid" size={20} />
+        </span>
+        <div class="section-banner__copy">
+          <span class="section-banner__index">02</span>
+          <h2 id="categories-title">Qué vendemos</h2>
+        </div>
+      </div>
+      <span class="section-banner__pill"> Calidad asegurada </span>
+    </header>
+
+    <div class="categories-intro">
+      <div
+        class="catalog-stats"
+        aria-label={`${site.catalogo.productos} productos en ${site.catalogo.categorias} categorías`}
+      >
+        <div class="stat">
+          <strong> + 300 </strong>
+          <span>productos</span>
+        </div>
+        <span class="stat-divider" aria-hidden="true"></span>
+        <div class="stat">
+          <strong>{site.catalogo.categorias}</strong>
+          <span>categorías en catálogo</span>
+        </div>
+      </div>
+
+      <p class="categories-lead">
+        De la especia que falta en la receta al bulto que necesita tu negocio. Todo se compra por
+        kilo, bolsa, bulto o caja según el producto.
+      </p>
+    </div>
+
+    <ol class="category-grid">
+      {
+        categorias.map((categoria, index) => (
+          <li>
+            <span class="category-icon">
+              <Icon name={categoria.icono} size={21} />
+            </span>
+            <span class="category-name">{categoria.nombre}</span>
+            <span class="category-count" aria-label={`${categoria.productos} productos`}>
+              {categoria.productos}
+              <span class="sr-only">productos</span>
+            </span>
+            <span class="category-index" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="categories-footer">
+      <a
+        class="catalog-link"
+        href={site.catalogo.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver las 27 categorías en el catálogo, se abre en una pestaña nueva"
+      >
+        Ver las {site.catalogo.categorias} categorías en el catálogo
+        <Icon name="arrow" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .categories {
+    padding-block: clamp(52px, 7vw, 82px);
+    background: var(--seccion-alterna);
+  }
+
+  .categories-intro {
+    display: grid;
+    gap: 24px;
+    padding-block: clamp(28px, 4vw, 42px) clamp(24px, 4vw, 34px);
+  }
+
+  .catalog-stats {
+    display: flex;
+    align-items: stretch;
+    gap: clamp(16px, 3vw, 28px);
+    padding: 18px 20px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-md);
+    background: var(--superficie);
+    box-shadow: var(--sombra-tarjeta);
+  }
+
+  .stat {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat strong {
+    color: var(--menta-texto);
+    font-size: clamp(2rem, 4vw, 2.65rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.055em;
+  }
+
+  .stat span {
+    color: var(--texto-suave);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: var(--borde);
+  }
+
+  .categories-lead {
+    max-width: 58ch;
+    align-self: center;
+    color: var(--texto-suave);
+    font-size: clamp(1rem, 1.5vw, 1.08rem);
+    line-height: 1.65;
+  }
+
+  .category-grid {
+    display: grid;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .category-grid li {
+    position: relative;
+    display: grid;
+    min-height: 74px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 48px 13px 13px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-md);
+    background: var(--superficie);
+    box-shadow: 0 4px 14px rgba(6, 48, 30, 0.035);
+    transition:
+      border-color 140ms ease,
+      box-shadow 140ms ease,
+      transform 140ms ease;
+  }
+
+  .category-grid li:hover {
+    border-color: var(--menta-borde);
+    box-shadow: var(--sombra-tarjeta);
+    transform: translateY(-2px);
+  }
+
+  .category-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--menta-suave);
+    color: var(--menta-texto);
+  }
+
+  .category-name {
+    color: var(--texto);
+    font-size: clamp(0.86rem, 1.35vw, 0.96rem);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .category-count {
+    display: inline-flex;
+    min-width: 32px;
+    min-height: 28px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    background: var(--menta-suave);
+    color: var(--menta-texto);
+    font-family: var(--fuente-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .category-index {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    color: var(--texto-suave);
+    font-family: var(--fuente-mono);
+    font-size: 0.53rem;
+    letter-spacing: 0.04em;
+  }
+
+  .categories-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 24px;
+  }
+
+  .catalog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--menta-texto);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .catalog-link:hover {
+    color: var(--menta-texto);
+  }
+
+  .catalog-link :global(svg) {
+    transition: transform 140ms ease;
+  }
+
+  .catalog-link:hover :global(svg) {
+    transform: translate(2px, -2px);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 640px) {
+    .category-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 920px) {
+    .categories-intro {
+      grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.15fr);
+      align-items: center;
+      gap: clamp(36px, 6vw, 76px);
+    }
+
+    .category-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 420px) {
+    .catalog-stats {
+      gap: 14px;
+      padding: 15px 16px;
+    }
+
+    .stat span {
+      font-size: 0.61rem;
+    }
+
+    .category-grid li {
+      padding-right: 42px;
+    }
+  }
+</style>
